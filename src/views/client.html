@@ -7,14 +7,6 @@
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="mobile-web-app-capable" content="yes">
   <title>user screen</title>
-  <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/pure-min.css">
-  <!--[if lte IE 8]>
-  <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/grids-responsive-old-ie-min.css">
-  <![endif]-->
-  <!--[if gt IE 8]><!-->
-  <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/grids-responsive-min.css">
-  <!--<![endif]-->
-  <link rel="stylesheet" type="text/css" href="stylesheets/style.css">
 </head>
 <body>
   <div class = "pure-g">
@@ -33,21 +25,7 @@
   <script>
     
     var socket = io();
-    socket.emit('on_connect',<%=client_id%>);
-    socket.on('refresh', function(data){
-      $('#main').empty();
-      if(data['type'] == 'img') {
-	$('#main').append('<img class = "pure-img" src = "'+ data.src +'">');	
-      }
-      else if(data['type'] == 'text') {
-	$('#main').append('<h1>' + data.src + '</h1>');
-      }
-      else if(data['type'] == 'video'){
-	$('#main').append('<video autoplay loop poster="/img/loader_gif.gif"  width=100%><source src='+data.src+' type="video/mp4"></video>');
-      }
-    });
-//'+$( document ).width()+'
-  </script>  
+ </script>  
 </body>
 </html>
 
