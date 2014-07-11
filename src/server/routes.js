@@ -3,7 +3,7 @@
  */
 module.exports = function(app,io){
   app.get('/', function(req, res){
-    res.render('client', hello);
+    res.render('client', 'title');
   });   
   io.on('connection', function(socket){
    console.log('user '+socket.id +' connected');
