@@ -1,7 +1,11 @@
 {
-  "name": "application-name",
+  "name": "mean-skeleton",
   "version": "0.0.1",
-  "private": true,
+  "description": "Sample Node.js app",
+  "main": "app.js",
+  "engines":{
+    "node": "0.10.x"
+  },
   "scripts": {
     "start": "node app.js"
   },
@@ -13,5 +17,6 @@
     "mongodb": ">=0.9.6-7",
     "mongoose": ">=3.6",
     "socket.io": "~1.0.6"
-  }
+  },
+  "author": "Brian Lin"
 }
