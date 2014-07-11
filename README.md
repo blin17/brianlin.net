@@ -1,4 +1,6 @@
-MEAN Stack Skeleton with socket.io and ejs set up
+Node.js Skeleton for MEAN stack + Socket.io
 ----
+Serves as a preset skeleton. Requires mongod to be running for it to work
 
-Write all code in src/server/routes.js instead of in app.js 
+
+Note: Write all controller code in src/server/routes.js 
