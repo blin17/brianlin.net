@@ -9,6 +9,14 @@ module.exports = function(app,marked){
     res.render('index');
   });   
 
+  app.get('/about', function(req, res){
+      var path = __dirname + '/../markdown/about.md';
+      var stats = fs.statSync(path);
+      if (stats.isFile()){
+        var file = fs.readFileSync(path, 'utf8');
+        res.render('markdown_renderer', {markdown: marked(file)});
+      }
+  });   
 
   app.get('/blog', function(req, res){
     res.render('blog');
@@ -16,11 +24,11 @@ module.exports = function(app,marked){
 
   app.get('/blog/:title', function(req, res){
     try{
-      var path = __dirname + '/../blog/'+req.params.title+'.md';
+      var path = __dirname + '/../markdown/'+req.params.title+'.md';
       var stats = fs.statSync(path);
       if (stats.isFile()){
         var file = fs.readFileSync(path, 'utf8');
-        res.render('blog_template', {blog: marked(file)});
+        res.render('markdown_renderer', {markdown: marked(file)});
       }
       else{
         res.status(404).render('404');
