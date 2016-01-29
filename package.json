@@ -11,12 +11,10 @@
   },
   "dependencies": {
     "express": "3.2.3",
-    "ejs": "*",
-    "consolidate": "latest",
-    "express-validator": "*",
-    "mongodb": ">=0.9.6-7",
-    "mongoose": ">=3.6",
-    "socket.io": "~1.0.6"
+    "express-validator": "2.19.0",
+    "ejs": "2.4.1",
+    "consolidate": "0.14.0",
+    "marked": "0.3.5"
   },
   "author": "Brian Lin"
 }
