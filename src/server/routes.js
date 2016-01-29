@@ -6,7 +6,12 @@
 module.exports = function(app,marked){
   var fs = require('fs');
   app.get('/', function(req, res){
-    res.render('index');
+      var path = __dirname + '/../markdown/about.md';
+      var stats = fs.statSync(path);
+      if (stats.isFile()){
+        var file = fs.readFileSync(path, 'utf8');
+        res.render('markdown_renderer', {markdown: marked(file)});
+      }
   });   
 
   app.get('/about', function(req, res){
