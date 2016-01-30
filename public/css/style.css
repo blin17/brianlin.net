@@ -110,6 +110,11 @@ ul.posts span{
     font-size: 90%;
 }
 
+h4{
+	font-weight: 300;
+    line-height: 1.4;
+}
+
 @media (max-width: 1000px) {
 	  
 	#top {
@@ -120,10 +125,6 @@ ul.posts span{
 	#top ul.posts li{
 		display: inline;
 		padding-right: 20px;
-	}
-
-	body {
-
 	}
 
 }

@@ -1,6 +1,6 @@
 # Si summa mente
 
-## Iram duris ad aequa haec illas intus
+#### January 28, 2016
 
 Lorem markdownum moveri soleant virtus caeli
 [Thessala](http://www.uselessaccount.com/) donec. Ullus caelo, mihi nebulas
@@ -42,6 +42,8 @@ equo; agit pietas timor, deae, in ab nos mitissima, quem. *Ire* de tororum est
 quiete caesis bina nostros et invito ignotae sepulcrum sentit quem positis
 enixa? Sua vera quos levi **praebuit** per illa infectis coniunx, nec feramus,
 quae nunc et audet?
+
+![New Yorker Cartoon](/img/new_yorker_cartoon.jpg)
 
 In aliamve colo insidiisque caput vacuum tamen, **ulnis pecudis**, veluti tumulo
 barbara videre habet audit nuntius, et. Flamma primum et visa, se illa, nec!

@@ -5,9 +5,8 @@ var express = require('express')
   , path = require('path')
   , nport = 3000;
 
-
-
-
+var config = require('./config');
+console.log(config.web.port)
 var App = function(){
   var self = this;
 
@@ -19,7 +18,6 @@ var App = function(){
     // all environments
 
     self.app = express();
-    //self.app.set('port', process.env.PORT || 3000);
     
     self.app.set('views', __dirname + '/src/views');
     self.app.set('view engine', 'html');
@@ -45,7 +43,7 @@ var App = function(){
   }
 
   self.start = function(){
-    self.server = self.app.listen(nport, function(){
+    self.server = self.app.listen(config.web.port, function(){
        console.log("Express started on port"+ nport);
     });
 
