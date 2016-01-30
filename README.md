@@ -13,3 +13,7 @@ git pull
 
 -- Markdown syntax
 https://daringfireball.net/projects/markdown/syntax
+
+-- Find Process && kill
+ps aux | grep node
+kill [pid]
