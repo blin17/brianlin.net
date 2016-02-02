@@ -26,7 +26,9 @@ module.exports = function(app,marked){
   app.get('/blog', function(req, res){
     res.render('blog');
   });   
-
+  app.get('/wip', function(req, res){
+    res.render('wip');
+  });  
   app.get('/blog/:title', function(req, res){
     try{
       var path = __dirname + '/../markdown/'+req.params.title+'.md';
@@ -45,7 +47,6 @@ module.exports = function(app,marked){
     }
 
   });
-
 
   app.get('/projects', function(req, res){
     res.render('projects');
