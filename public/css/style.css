@@ -94,6 +94,10 @@ h3{
 	margin-bottom: 20px
 }
 
+#content ul, ol{
+	padding-left: 15px;
+}
+
 
 ul.posts{
 	list-style-type: none;

@@ -2,11 +2,9 @@ var express = require('express')
   , cons = require('consolidate')
   , validate = require('express-validator')
   , http = require('http')
-  , path = require('path')
-  , nport = 3000;
+  , path = require('path');
 
 var config = require('./config');
-console.log(config.web.port)
 var App = function(){
   var self = this;
 
@@ -44,7 +42,7 @@ var App = function(){
 
   self.start = function(){
     self.server = self.app.listen(config.web.port, function(){
-       console.log("Express started on port"+ nport);
+       console.log("Express started on port "+ config.web.port);
     });
 
     self.initializeServer();
