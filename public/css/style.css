@@ -102,6 +102,7 @@ h3{
 ul.posts{
 	list-style-type: none;
 	margin-bottom: 2em;
+	padding-left: 15px;
 }
 
 ul.posts li{
