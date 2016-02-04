@@ -4,7 +4,7 @@
 }
 
 body{
-	//font-size: 16px;
+	font-size: 1.5em;
 	background-color: #fffcf8;
 	color: #666;
 	//letter-spacing: 0px;
@@ -29,12 +29,6 @@ h1,h2,h3{
 	margin-bottom:10px;
 	margin-top: 0px;
 }
-/*
-h2{
-	margin-bottom: 1em;
-	font-size: 100%;
-}*/
-
 h3{
 	font-weight: normal;
 	letter-spacing: 0px;
@@ -74,7 +68,7 @@ h3{
 
 #top{
 	float: left;
-	width: 175px;
+	width: 150px;
 }
 
 #top li a{
@@ -85,7 +79,7 @@ h3{
  	position: relative;
 	float: left;
 	height: 75%;
-	width: 60%;
+	width: 600px;
 	padding: 0px 50px;
 }
 
@@ -120,10 +114,16 @@ h4{
     line-height: 1.4;
 }
 
-@media (max-width: 1000px) {
+@media (max-width: 780px) {
 	  
+    #content {
+    	width: 400px;
+    	margin: 0px auto;
+		padding: 0px 0px;
+    }
 	#top {
-		padding: 0px 50px;
+		padding: 0px auto;
+		//margin: 0px auto;
 		width: 100%;
 	}
 
@@ -132,6 +132,13 @@ h4{
 		padding-right: 20px;
 	}
 
+
 }
 
+@media (max-width: 500px) {
+	#content {
+    	width: 80%;
+    }
+
+}
 
