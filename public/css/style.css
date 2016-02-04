@@ -114,7 +114,7 @@ img{
 	max-width: 100%;
 }
 
-@media (max-width: 780px) {
+@media (max-width: 800px) {
 	  
     #content {
     	margin: 0px auto;
