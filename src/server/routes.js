@@ -36,8 +36,7 @@ module.exports = function(app,marked){
         res.status(404).render('404');
       }
     }
-    catch(e){    
-      console.log("e: " + e);
+    catch(e){
       res.status(404).render('404');
     }
 
@@ -47,7 +46,7 @@ module.exports = function(app,marked){
     res.render('projects');
   });   
   app.use(function(req, res) {
-      res.status(404).send('error');
+      res.status(404).render('404');
   });
 
 };
