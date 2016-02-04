@@ -6,21 +6,18 @@
 body{
 	font-size: 1.5em;
 	background-color: #fffcf8;
-	color: #666;
-	//letter-spacing: 0px;
+	color: #444;
 	line-height: 1.5em;
-	font-family: Helvetica, "Nimbus Sans L", "Liberation Sans", Arial, sans-serif;
 }
 
+#container h1 a{
+	color: #222;
+}
 a{
-	//text-decoration: none;
-	//font-weight: bold;
 	color: #ff5b4f;
-}
-
-a{
 	text-decoration: none;
 }
+
 
 a:hover   {text-decoration: underline;}
 
@@ -28,6 +25,7 @@ h1,h2,h3{
 	letter-spacing: 0px;
 	margin-bottom:10px;
 	margin-top: 0px;
+	color: #222;
 }
 h3{
 	font-weight: normal;
@@ -49,9 +47,6 @@ h3{
 	height: 100%;
 }
 
-#container h1 a{
-	color: #666;
-}
 
 .current{
 	color: #5f7b4c;
@@ -121,7 +116,6 @@ img{
 @media (max-width: 780px) {
 	  
     #content {
-    	width: 400px;
     	margin: 0px auto;
 		padding: 0px 0px;
     }
@@ -138,11 +132,21 @@ img{
 
 
 }
+@media (max-width: 650px) {
+
+	#content {
+		width: 400px;
+	}
+
+
+}
+
 
 @media (max-width: 500px) {
+
 	#content {
-    	width: 90%;
-    }
+		width: 90%;
+	}
 
 
 }
