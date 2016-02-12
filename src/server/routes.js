@@ -6,7 +6,12 @@
 module.exports = function(app,marked){
   var fs = require('fs');
   app.get('/', function(req, res){
-      res.render('blog');
+      var path = __dirname + '/../markdown/about.md';
+      var stats = fs.statSync(path);
+      if (stats.isFile()){
+        var file = fs.readFileSync(path, 'utf8');
+        res.render('markdown_renderer', {markdown: marked(file)});
+      }
   });   
 
   app.get('/about', function(req, res){
@@ -24,6 +29,27 @@ module.exports = function(app,marked){
   app.get('/wip', function(req, res){
     res.render('wip');
   });  
+
+  app.get('/chinese', function(req, res){
+    res.render('chinese');
+  });
+
+  app.get('/hk/:title', function(req,res){
+    try{
+      var path = __dirname + '/../markdown/hk/'+req.params.title+'.md';
+      var stats = fs.statSync(path);
+      if (stats.isFile()){
+        var file = fs.readFileSync(path, 'utf8');
+        res.render('markdown_renderer', {markdown: marked(file)});
+      }
+      else{
+        res.status(404).render('404');
+      }
+    }
+    catch(e){
+      res.status(404).render('404');
+    }
+  });
   app.get('/blog/:title', function(req, res){
     try{
       var path = __dirname + '/../markdown/'+req.params.title+'.md';
@@ -39,7 +65,6 @@ module.exports = function(app,marked){
     catch(e){
       res.status(404).render('404');
     }
-
   });
 
   app.get('/projects', function(req, res){

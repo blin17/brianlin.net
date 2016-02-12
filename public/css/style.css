@@ -108,6 +108,7 @@ ul.posts span{
 h4{
 	font-weight: 300;
     line-height: 1.4;
+    font-variant: small-caps;
 }
 
 img{
