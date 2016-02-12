@@ -28,11 +28,6 @@ h1,h2,h3{
 	color: #222;
 	font-weight:bold;
 }
-h3{
-	font-weight: normal;
-	letter-spacing: 0px;
-	text-decoration: underline;
-}
 
 
 #container{
