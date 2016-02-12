@@ -23,7 +23,7 @@ module.exports = function(app,marked){
       }
   });   
 
-  app.get('/blog', function(req, res){
+  app.get('/writing', function(req, res){
     res.render('blog');
   });   
   app.get('/wip', function(req, res){
