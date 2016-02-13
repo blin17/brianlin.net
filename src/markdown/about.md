@@ -1,5 +1,3 @@
-## About
-
 Hi there, I'm Brian Lin. 
 
 I want to bridge the understanding gap between China and America through technology, with a big emphasis on language understanding. I'm also very interested in exploring manufacturing and international shipping.
