@@ -1,7 +1,7 @@
 {
-  "name": "mean-skeleton",
+  "name": "berlin-blog",
   "version": "0.0.1",
-  "description": "Sample Node.js app",
+  "description": "my personal blog",
   "main": "app.js",
   "engines":{
     "node": "0.10.x"
@@ -15,6 +15,10 @@
     "ejs": "2.4.1",
     "consolidate": "0.14.0",
     "marked": "0.3.5"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/blin17/homepage.git"
   },
   "author": "Brian Lin"
 }

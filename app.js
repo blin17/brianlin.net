@@ -1,7 +1,8 @@
 var express = require('express')
   , cons = require('consolidate')
   , validate = require('express-validator')
-  , http = require('http')
+  , morgan = require('morgan')
+  , fs = require('fs')
   , path = require('path');
 
 var config = require('./config');
@@ -21,7 +22,6 @@ var App = function(){
     self.app.set('view engine', 'html');
     self.app.engine('html', cons.ejs);
     //self.app.use(express.favicon());
-    //self.app.use(express.logger('dev'));
     self.app.use(express.bodyParser());
     self.app.use(express.methodOverride());
     self.app.use(self.app.router);
@@ -39,6 +39,9 @@ var App = function(){
       smartypants: false
     });
   }
+
+  self.accessLogStream = fs.createWriteStream(__dirname + '/access.log', {flags: 'a'})
+  self.app.use(morgan('combined', {stream: self.accessLogStream}))
 
   self.start = function(){
     self.server = self.app.listen(config.web.port, function(){
