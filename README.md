@@ -31,5 +31,7 @@ cd $GIT_REPO
 unset GIT_DIR
 git pull
 sudo pkill -f "node app.js"
+npm install
 sudo nohup node app.js &
 exit
+
