@@ -18,7 +18,6 @@ a{
 	text-decoration: none;
 }
 
-
 a:hover   {text-decoration: underline;}
 
 h1,h2,h3{
@@ -29,25 +28,21 @@ h1,h2,h3{
 	font-weight:bold;
 }
 
+.title{
+	font-size: 1.5em;
+}
 
 #container{
 	font-family: sans-serif;
 	width: 100%;
-}
-
-#container{
 	padding-top: 30px;
 	padding-left: 20px;
 	margin: 0px auto;
 	text-align: left;
 	height: 100%;
+
 }
 
-
-.current{
-	color: #5f7b4c;
-	letter-spacing: 3px;
-}
 #description{
 	margin-bottom: 2em;
 }
@@ -66,6 +61,10 @@ h1,h2,h3{
 	font-weight: bold;
 }
 
+#top ul.posts{
+	padding-left: 0px;
+}
+
 #content{
  	position: relative;
 	float: left;
@@ -75,25 +74,17 @@ h1,h2,h3{
 }
 
 
-#content p{
-	margin-bottom: 20px
-}
-
 ul, ol{
-	padding-left: 15px;
+	padding-left: 25px;
 }
 
 
 ul.posts{
 	list-style-type: none;
-//	margin-bottom: 2em;
-	padding-left: 0px;
 }
 
 ul.posts li{
-
 	line-height: 1.75em;
-
 }
 ul.posts span{
     color: #aaa;
@@ -106,9 +97,19 @@ h4{
     font-variant: small-caps;
 }
 
-img{
+#renderer img{
 	max-width: 100%;
 }
+
+
+#renderer p{
+	margin: 20px 0px;
+}
+
+#notes{
+	margin-top: 50px;
+}
+
 
 @media (max-width: 800px) {
 	  
