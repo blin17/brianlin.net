@@ -15,4 +15,4 @@ node_modules
 npm-debug.log
 config.js
 src/drafts
-access.log
+/log
