@@ -5,6 +5,8 @@ var express = require('express')
   , fs = require('fs')
   , path = require('path')
   , FileStreamRotator = require('file-stream-rotator')
+  , archiver = require('blog-archiver')
+  , marked = require('marked');
 
 
 var config = require('./config');
@@ -13,7 +15,7 @@ var App = function(){
   var self = this;
 
   self.initializeServer = function(){
-    require('./src/server/routes')(self.app,self.marked);
+    require('./src/server/routes')(self.app,marked, archiver);
   };
 
   self.logger = function(){
@@ -32,9 +34,8 @@ var App = function(){
     // all environments
     self.app = express();
     self.logger();
-    self.marked = require('marked');
-    self.marked.setOptions({
-      renderer: new self.marked.Renderer(),
+    marked.setOptions({
+      renderer: new marked.Renderer(),
       gfm: true,
       tables: true,
       breaks: false,

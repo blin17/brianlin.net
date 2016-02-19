@@ -3,7 +3,7 @@
  */
 
 
-module.exports = function(app,marked){
+module.exports = function(app,marked,archiver){
   var fs = require('fs');
   app.get('/', function(req, res){
       var path = __dirname + '/../markdown/home.md';
@@ -47,13 +47,9 @@ module.exports = function(app,marked){
     res.render('test');
   });  
 
-  app.get('/chinese', function(req, res){
-    res.render('chinese');
-  });
-
-  app.get('/hk/:title', function(req,res){
+  app.get('/chineseblog/:title', function(req,res){
     try{
-      var path = __dirname + '/../markdown/hk/'+req.params.title+'.md';
+      var path = __dirname + '/../markdown/chinese/'+req.params.title+'.md';
       var stats = fs.statSync(path);
       if (stats.isFile()){
         var file = fs.readFileSync(path, 'utf8');
@@ -75,5 +71,14 @@ module.exports = function(app,marked){
       res.status(404).render('404');
   });
 
+  app.get('/chinese', function(req, res){
+    try{
+      res.render('markdown_renderer', {markdown: archiver.generateHTML("博客", __dirname+ "/../markdown/chinese/", {routing: "/chineseblog/"})});
+    }
+    catch (e){
+      console.log(e);
+      res.status(404).render('404');
+    }
+  });
 };
 
