@@ -19,7 +19,7 @@ sudo nohup node app.js &
 exit
 ```
 
-**Explanation**
+** Explanation **
 
 - The first part basically means go into the directory and pull the repo.
 

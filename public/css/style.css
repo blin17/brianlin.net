@@ -13,12 +13,23 @@ body{
 #container h1 a{
 	color: #222;
 }
+
 a{
 	color: #ff5b4f;
 	text-decoration: none;
 }
 
-a:hover   {text-decoration: underline;}
+a:hover{
+	text-decoration: underline;
+}
+
+blockquote{
+	font-size: inherit;
+}
+
+#renderer blockquote p{
+	margin: 0px;
+}
 
 h1,h2,h3{
 	letter-spacing: 0px;
