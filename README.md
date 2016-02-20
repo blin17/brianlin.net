@@ -2,7 +2,7 @@ personal website w/ automatic conversion for markdown
 
 -- config.js change port if needed
 -80 for server
--3000 for localhost
+-3000 for localhost 
 
 -- Git pulling without server
 git reset --hard HEAD
