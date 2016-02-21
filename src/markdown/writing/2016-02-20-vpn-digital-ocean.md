@@ -56,9 +56,9 @@ Click the plus button near the bottom left corner to create a new service.
 Then select Interface: VPN and VPN Type: PPTP
 ![Create a new service](/img/vpn-screen5.png)
 
-Then fill in the following fields:
-Server Address: [DROPLET's IP ADDRESS]
-Account Name: [VPN USERNAME]
+Then fill in the following fields:   
+Server Address: [DROPLET's IP ADDRESS]  
+Account Name: [VPN USERNAME]  
 ![VPN Fields](/img/vpn-screen6.png)
 
 Then click Authentication Settings and enter your password.
