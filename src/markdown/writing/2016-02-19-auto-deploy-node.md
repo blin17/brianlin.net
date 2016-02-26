@@ -1,4 +1,4 @@
-## Automatic Deployment with Git on a VPS for Node.js
+# Automatic Deployment with Git on a VPS for Node.js
 
 #### February 19th 2016
 

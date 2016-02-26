@@ -4,23 +4,33 @@
 }
 
 body{
+	font-family: 'Helvetica', 'Arial', san-serifs;
 	font-size: 1.5em;
+	line-height:1.5em;
 	background-color: #fffcf8;
 	color: #444;
-	line-height: 1.5em;
+	font-weight: 300;
 }
 
-#container h1 a{
+#container{
+	width: 100%;
+	padding-top: 15px;
+	padding-left: 20px;
+	margin: 0px auto;
+	text-align: left;
+	height: 100%;
+
+}
+
+#container h1 a, #container h1 a:hover{
 	color: #222;
+	text-decoration: none;
+	font-weight:bold;
 }
 
 a{
 	color: #ff5b4f;
 	text-decoration: none;
-}
-
-a:hover{
-	text-decoration: underline;
 }
 
 blockquote{
@@ -31,28 +41,7 @@ blockquote{
 	margin: 0px;
 }
 
-h1,h2,h3{
-	letter-spacing: 0px;
-	margin-bottom:10px;
-	margin-top: 0px;
-	color: #222;
-	font-weight:bold;
-}
 
-.title{
-	font-size: 1.5em;
-}
-
-#container{
-	font-family: sans-serif;
-	width: 100%;
-	padding-top: 30px;
-	padding-left: 20px;
-	margin: 0px auto;
-	text-align: left;
-	height: 100%;
-
-}
 
 #description{
 	margin-bottom: 2em;
@@ -76,15 +65,23 @@ h1,h2,h3{
 	padding-left: 0px;
 }
 
-#content{
+#content, #renderer{
  	position: relative;
-	float: left;
 	height: 75%;
 	width: 600px;
-	padding: 0px 50px;
+	margin: 20px auto 200px auto;
 }
 
+#content{
+	float: left;
+	margin: 20px 0px 200px 0px;
+}
 
+#renderer{
+	line-height: 23px;
+	font-size: 17px;
+	margin: 20px auto 200px auto;
+}
 ul, ol{
 	padding-left: 25px;
 }
@@ -102,33 +99,80 @@ ul.posts span{
     font-size: 90%;
 }
 
-h4{
-	font-weight: 200;
-    line-height: 1.4;
+#renderer > p:first-of-type{
+	margin-top: 3em;
 }
-
-#renderer img{
-	max-width: 100%;
-}
-
-
 #renderer p{
-	margin: 20px 0px;
+	margin-bottom: 1em;
 }
 
 #notes{
-	margin-top: 50px;
+	margin-top: 30px;
+}
+
+#renderer h1{
+	text-transform: uppercase;
+	font-size: 38px;
+	letter-spacing: 3px;
+	font-style: normal;
+	text-align: center;
+	font-weight: 300;
+	color: #222;
+	line-height: 1.2;
+	margin-bottom: 0px;
+}
+
+#renderer h2{
+    margin: 1em auto 0px auto;
+    font-size: 1em;
+    font-style: normal;
+    font-weight: 300;
+    text-align: center;
+    overflow: auto;
+}
+
+#renderer h3, #content h3{
+	color: #222;
+	line-height: 1.2;
+	font-size: 28px;
+    font-weight: 400;
+    margin-top: 10px;
+}
+#content h3{
+	text-align: center;
+}
+
+#renderer h4{
+	text-align: center;
+	font-size: 13px;
+	color: #666;
 }
 
 
+#renderer img, #content img{
+	max-width: 100%;
+}
 
+#tutorial {
+
+}
+
+
+@media(max-width: 1000px){
+
+    #content{
+    	float:left;
+    }
+}
 
 @media (max-width: 800px) {
 	  
-    #content {
+    #content,#renderer {
     	margin: 0px auto;
 		padding: 0px 0px;
     }
+
+
 	#top {
 		padding: 0px auto;
 		width: 100%;
@@ -144,7 +188,7 @@ h4{
 }
 @media (max-width: 650px) {
 
-	#content {
+	#content,#renderer {
 		width: 400px;
 	}
 
@@ -154,7 +198,7 @@ h4{
 
 @media (max-width: 500px) {
 
-	#content {
+	#content,#renderer {
 		width: 90%;
 	}
 

@@ -1,4 +1,5 @@
-## Si summa mente
+# Si summa mente
+## Tagline
 
 #### January 28, 2016
 
@@ -35,7 +36,7 @@ nisi](http://omgcatsinspace.tumblr.com/) aequora serius sistrum.
 2. Ille isto Cerealia
 3. Sibilat iugo undas amor vidisse
 
-## Cum se consiliis domos custos inque
+### Cum se consiliis domos custos inque
 
 Fecit superum amplectens piumque! Bimari divumque illa meis illam. Ausa est
 equo; agit pietas timor, deae, in ab nos mitissima, quem. *Ire* de tororum est

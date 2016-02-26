@@ -10,7 +10,7 @@ module.exports = function(app,marked,archiver){
       var stats = fs.statSync(path);
       if (stats.isFile()){
         var file = fs.readFileSync(path, 'utf8');
-        res.render('markdown_renderer', {markdown: marked(file)});
+        res.render('index_renderer', {markdown: marked(file)});
       }
   });   
 
@@ -19,7 +19,7 @@ module.exports = function(app,marked,archiver){
       var stats = fs.statSync(path);
       if (stats.isFile()){
         var file = fs.readFileSync(path, 'utf8');
-        res.render('markdown_renderer', {markdown: marked(file)});
+        res.render('index_renderer', {markdown: marked(file)});
       }
   });   
 
@@ -29,7 +29,7 @@ module.exports = function(app,marked,archiver){
 
   app.get('/chinese', function(req, res){
     try{
-      res.render('markdown_renderer', {markdown: archiver.generateHTML("博客", __dirname+ "/../markdown/chinese/", {routing: "/chineseblog/"})});
+      res.render('index_renderer', {markdown: archiver.generateHTML("博客", __dirname+ "/../markdown/chinese/", {routing: "/chineseblog/"})});
     }
     catch (e){
       console.log(e);

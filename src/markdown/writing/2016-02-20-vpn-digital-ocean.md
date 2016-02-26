@@ -1,15 +1,18 @@
-### How to set up a VPN Server on Digital Ocean
+# How to set up a VPN Server on Digital Ocean
 
 #### Feb 20 2015
 
-** Step 1: Create a Digital Ocean Account **
+
+I wanted to write a blog entry on how I set up my VPN server in preparation of China.
+
+### Step 1: Create a Digital Ocean Account
 
 1. First, if you don't have an account, use the [Student Developer Pack](https://education.github.com/pack) to get a $50 voucher code. 
 2. Then use [my referral link](https://m.do.co/c/c93d76989ecb) to get an additional $10.  
 
 Using those steps, you can get enough free credits to last you a year!
 
-** Step 2: Create a Droplet ** 
+### Step 2: Create a Droplet
 
 On the Digital Ocean homepage, click the Create Droplet button on top right.
 
@@ -24,7 +27,7 @@ Select a droplet in Singapore
 
 Finally, click Create
 
-** Step 3: SSH into your droplet**
+### Step 3: SSH into your droplet
 
 Digital Ocean will send you your IP address and your root password. We'll need those later.  
 
@@ -47,7 +50,7 @@ Create a username and password for the VPN and then run:
 
 Now your Point to Point Tunneling Server (PoPToP) VPN is ready!
 
-** Step 4: Connecting to your VPN on a Macbook**
+### Step 4: Connecting to your VPN on a Macbook
 
 Open System Prefereces and click on Network
 ![System Preference- Network](/img/vpn-screen4.png)
@@ -69,6 +72,6 @@ Click Advanced and check "Send all traffic over VPN connection"
 
 Click Apply and Connect and your VPN should be ready! 
 
-** Step 5: Make sure it's working**
+### Step 5: Make sure it's working
 Check to make sure your public IP is in Singapore using a IP finder website like [this one](http://whatismyipaddress.com/)  
 ![Singapore](/img/vpn-screen9.png)

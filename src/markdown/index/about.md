@@ -1,5 +1,7 @@
 ### About
 
+Hi, I'm Brian Lin.
+
 I want to bridge the understanding gap between China and America through technology, with an emphasis on language understanding. I'm also interested in exploring manufacturing and international shipping.
 
 I worked as a Program Manager at Microsoft. I graduated from Cornell University with a Bachelors of Science in Information Science and Applied Economics. I also studied abroad at the University of Hong Kong.
