@@ -1,9 +1,8 @@
-# How to set up a VPN Server on Digital Ocean
+# Digital Ocean VPN Server
 
 #### Feb 20 2015
 
-
-I wanted to write a blog entry on how I set up my VPN server to use. 
+A Guide for Setting up a Cheap $5/month VPN
 
 ### Step 1: Create a Digital Ocean Account
 

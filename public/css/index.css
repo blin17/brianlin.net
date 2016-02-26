@@ -68,6 +68,14 @@ blockquote{
 	height: 75%;
 	width: 600px;
 	margin: 0px auto 200px auto;
+}
+
+#content{
+	float: left;
+	padding: 10px 50px;
+}
+
+#renderer{
 	line-height: 23px;
 	font-size: 17px;
 }
@@ -129,7 +137,7 @@ ul.posts span{
     margin-top: 10px;
 }
 #content h3{
-	text-align: center;
+//	text-align: center;
 }
 
 #renderer h4{
