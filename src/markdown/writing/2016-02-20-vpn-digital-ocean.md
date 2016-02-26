@@ -3,11 +3,11 @@
 #### Feb 20 2015
 
 
-I wanted to write a blog entry on how I set up my VPN server in preparation of China.
+I wanted to write a blog entry on how I set up my VPN server to use. 
 
 ### Step 1: Create a Digital Ocean Account
 
-1. First, if you don't have an account, use the [Student Developer Pack](https://education.github.com/pack) to get a $50 voucher code. 
+1. First, if you don't have an account, use the [Student Developer Pack](https://education.github.com/pack) to get a $50 voucher code.
 2. Then use [my referral link](https://m.do.co/c/c93d76989ecb) to get an additional $10.  
 
 Using those steps, you can get enough free credits to last you a year!

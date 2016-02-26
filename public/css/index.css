@@ -41,8 +41,6 @@ blockquote{
 	margin: 0px;
 }
 
-
-
 #description{
 	margin-bottom: 2em;
 }
@@ -69,19 +67,11 @@ blockquote{
  	position: relative;
 	height: 75%;
 	width: 600px;
-	margin: 20px auto 200px auto;
-}
-
-#content{
-	float: left;
-	margin: 20px 0px 200px 0px;
-}
-
-#renderer{
+	margin: 0px auto 200px auto;
 	line-height: 23px;
 	font-size: 17px;
-	margin: 20px auto 200px auto;
 }
+
 ul, ol{
 	padding-left: 25px;
 }
@@ -153,14 +143,10 @@ ul.posts span{
 	max-width: 100%;
 }
 
-#tutorial {
-
-}
-
 
 @media(max-width: 1000px){
 
-    #content{
+    #content,#renderer{
     	float:left;
     }
 }
