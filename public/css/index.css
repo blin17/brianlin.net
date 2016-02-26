@@ -162,6 +162,7 @@ ul.posts span{
 @media (max-width: 800px) {
 	  
     #content,#renderer {
+    	float:none;
     	margin: 0px auto;
 		padding: 0px 0px;
     }
