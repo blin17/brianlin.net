@@ -24,7 +24,7 @@ module.exports = function(app,marked,archiver){
   });   
 
   app.get('/writing', function(req, res){
-    res.render('writing');
+    res.render('writing', {markdown: archiver.generateHTML("博客", __dirname+ "/../markdown/blog/", {long: false})});
   });   
 
   app.get('/chinese', function(req, res){
@@ -42,6 +42,23 @@ module.exports = function(app,marked,archiver){
   });  
 
   app.get('/blog/:title', function(req, res){
+    try{
+      var path = __dirname + '/../markdown/blog/'+req.params.title+'.md';
+      var stats = fs.statSync(path);
+      if (stats.isFile()){
+        var file = fs.readFileSync(path, 'utf8');
+        res.render('markdown_renderer', {markdown: marked(file)});
+      }
+      else{
+        res.status(404).render('404');
+      }
+    }
+    catch(e){
+      res.status(404).render('404');
+    }
+  });
+
+  app.get('/writing/:title', function(req, res){
     try{
       var path = __dirname + '/../markdown/writing/'+req.params.title+'.md';
       var stats = fs.statSync(path);

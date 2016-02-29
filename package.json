@@ -17,7 +17,7 @@
     "marked": "0.3.5",
     "morgan": "1.6.1",
     "file-stream-rotator": "0.0.6",
-    "blog-archiver": "1.0.1"
+    "blog-archiver": "1.1.0"
   },
   "repository": {
     "type": "git",
