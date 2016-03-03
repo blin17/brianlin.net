@@ -4,7 +4,7 @@
 
 In college, I never worried about keeping in contact with my friends. We'd just always keep in touch somehow. I would bump into Jeff coming home from class and we'd arrange dinner for the following week. Or I'd hit up David, my ping pong rival, whenever I was feeling that itch. Or there'd be a Friday night rager at Sasha's house and I'd see everyone I knew.
 
-But after graduating, it wasn't like that anymore. Everyone went their separate ways. And I was alone in Seattle. So after a long draught of no contact, I realized that in order to keep in touch with my close friends, I would need to devise a system to remind me to call them. 
+But after graduating, it wasn't like that anymore. Everyone went their separate ways. And I was alone in Seattle. So after a long drought of no contact, I realized that in order to keep in touch with my close friends, I would need to devise a system to remind me to call them. 
 
 So I created a checklist for my friends to see how often I called them. Below you can see what it looks like in my planner. [[1]](#1)
 

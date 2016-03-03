@@ -51,7 +51,7 @@ Now your Point to Point Tunneling Server (PoPToP) VPN is ready!
 
 ### Step 4: Connecting to your VPN on a Macbook
 
-Open System Prefereces and click on Network
+Open System Preferences and click on Network
 ![System Preference- Network](/img/vpn-screen4.png)
 
 Click the plus button near the bottom left corner to create a new service. 
