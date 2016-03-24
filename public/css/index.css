@@ -102,7 +102,10 @@ ul.posts span{
 }
 #renderer p{
 	margin-bottom: 1.5em;
-	color: #222;
+	color: #444;
+	line-height: 1.58;
+    letter-spacing: -.003em;
+	font-family: 'Verdana';
 }
 
 #notes{
