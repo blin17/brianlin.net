@@ -101,7 +101,8 @@ ul.posts span{
 	margin-top: 3em;
 }
 #renderer p{
-	margin-bottom: 1em;
+	margin-bottom: 1.5em;
+	color: #222;
 }
 
 #notes{
@@ -115,7 +116,7 @@ ul.posts span{
 	font-style: normal;
 	text-align: center;
 	font-weight: 300;
-	color: #222;
+	color: #000;
 	line-height: 1.2;
 	margin-bottom: 0px;
 }
@@ -134,9 +135,6 @@ ul.posts span{
 	line-height: 1.2;
 	font-size: 28px;
     font-weight: 400;
-}
-#content h3{
-//	text-align: center;
 }
 
 #renderer h4{
