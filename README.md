@@ -1,4 +1,4 @@
-personal website w/ automatic conversion for markdown
+personal website with automatic conversion for markdown
 
 -- config.js change port if needed
 -80 for server
