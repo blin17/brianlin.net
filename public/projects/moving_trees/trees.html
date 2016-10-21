@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Background</title>
+<style type="text/css">
+	html, body{
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+	}
+
+#bottom{
+  position: absolute;
+  bottom:0px;
+  height: 200px;
+  width:100%;
+}
+#bottom .front{
+  height: 200px;
+  width:100%;
+  position: absolute;
+  top:0px;
+  background-image: url(trees_front.png);
+  background-size: 400px 200px;
+  background-repeat: repeat-x;
+}
+#bottom .back{
+  height: 200px;
+  width:100%;
+  position: absolute;
+  top:10px;
+  background-image: url(trees_back.png);
+  background-size: 400px 200px;
+  background-repeat: repeat-x;
+  opacity: 0;
+}
+</style>
+
+
+<script type="text/javascript">
+  var fade = 0;
+  document.onmousemove = function(e) {
+    var percentageHeight = .5-(e.pageY / window.innerHeight);
+    var percentageWidth = .5-(e.pageX / window.innerWidth);
+    var x = document.getElementsByClassName("back");
+	for (var i = 0; i < x.length; i++){
+    	var d = x[i];
+    	d.style.left = 50 *percentageWidth  + 'px';
+    	d.style.top = 15 *percentageHeight + 10 + 'px';
+    	if (fade > Math.abs(.5*percentageWidth)+ .5 || fade == -1){
+    		fade = -1;
+    		d.style.opacity = Math.abs(.5*percentageWidth)+ .5;
+    	}
+    	else {
+    		fade += .01;
+    		d.style.opacity = fade;
+    	}
+    } 
+  }
+  
+
+
+</script>
+
+</head>
+<body >
+	
+<div id = "bottom">
+<div class ="front"></div>
+<div class ="back"></div>
+</div>
+</body>
+
+</html>
+

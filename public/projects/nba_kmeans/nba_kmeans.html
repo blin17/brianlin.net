@@ -1,0 +1,246 @@
+<html>
+<head><title> NBA Position Predictor </title>
+<script src="http://d3js.org/d3.v3.min.js"></script>
+</head>
+<body>
+	<!-- Some interactive controls -->
+
+
+<h3>Using K-Means Clustering to label NBA players by position (guard, forward, center)</h3>
+<p>This is a demonstration on k-means clustering to show how we can show guess what the position of an NBA player is, using their height and weight. To run this, altenate clicking on the Move Means and Cluster Points buttons to run through the algorithm. When the points are in a stable position, click on the Reveal button to show the actual positions of the players.
+</p>
+<button id="moveMeans">Move Means</button>
+<button id="clusterPoints">Cluster Points</button>
+<button id="reveal">Reveal</button>
+
+<span id="thresholdDisplay"></span>
+<div id="cluster"></div>
+
+<script>
+
+var height = 400;
+var width = 600;
+
+var svg = d3.select("#cluster").append("svg").attr("height", height).attr("width", width);
+
+var xScale = d3.scale.linear().domain([65, 90]).range([100, width-50]);
+var yScale = d3.scale.linear().domain([150, 270]).range([height-50, 50]);
+var sqrtScale = d3.scale.sqrt().domain([1,10]).range([5, 15]);
+
+var xAxis = d3.svg.axis().scale(xScale);
+svg.append("g")
+  .attr("class", "axis")
+  .attr("transform", "translate(0,"+ yScale(150) + ")")
+  .call(xAxis);
+
+var yAxis = d3.svg.axis().scale(yScale).orient("left");
+svg.append("g")
+	.attr("class", "axis")
+	.attr("transform", "translate("+ xScale(65)+",0)")
+	.call(yAxis);
+
+
+
+	svg.append("text").text("Weight").attr("x", "0%").attr("y", "54%").attr("dx", "12px");
+	svg.append("text").text("Height").attr("x", "50%").attr("y", "100%").attr("dy", "-8px");
+
+
+// The data array for cluster centers.
+// We'll make three clusters, in random locations near
+//  the center.
+var clusters = [];
+var numClusters = 3;
+var points = [];
+var pointTexts;
+var reveal = false;
+d3.csv("ml.csv", function(d) {
+  return {
+    weight: d.weight,
+    x: d.x,
+    y: d.y
+  };
+}, function(error, rows) {
+	// The data array for points to be clustered.
+	for (var i = 0; i < rows.length; i++){
+		points.push( { x: parseInt(rows[i].x), y: parseInt(rows[i].y), n: parseInt(rows[i].weight), cluster: i%numClusters} );
+	}
+	// Create <text> elements for each point, showing
+	//  their current assignment.
+
+	pointCircles = svg.selectAll(".circles").data(points);
+
+	pointCircles.enter().append("circle").attr("class", "shape");
+
+	pointCircles
+		.attr("cx", function (point) { return xScale(point.x) + 4; } )
+		.attr("cy", function (point) { return yScale(point.y) - 2; } )
+		.attr("r", function (point) { return 10; } )
+		.style("fill",function (point) { if (point.cluster === 0){
+				return "#bbbbff";
+			}else if (point.cluster === 1){
+				return "#99ff99";
+			}else if (point.cluster === 2){
+				return "#ff7777"
+			}});
+
+	pointTexts = svg.selectAll(".point").data(points);
+	pointTexts.enter().append("text").attr("class", "point");
+	pointTexts
+		.text(function (point) { return point.cluster; })
+	  	.attr("x", function (point) { return xScale(point.x); })
+	  	.attr("y", function (point) { return yScale(point.y); });
+
+
+	
+	
+	}
+);
+
+var createClusters = function(n) {
+	clusters = [];
+	clusters.push( { x: 74, y: 210, n: 0 } );
+	clusters.push( { x: 90, y: 220, n: 0 } );
+	clusters.push( { x: 80, y: 250, n: 0 } );
+
+	// Create <text> elements for each cluster.
+	var texts = svg.selectAll(".cluster").data(clusters);
+
+	texts.enter().append("text").attr("class", "cluster");
+
+	texts
+  	.attr("x", function (cluster) { return xScale(cluster.x); } )
+  	.attr("y", function (cluster) { return yScale(cluster.y); } )
+	.text(function (cluster, i) { return i; } )
+	.style("fill", "black")
+	.style("font-size", "x-large");
+
+	return texts;
+};
+
+var clusterTexts = createClusters(numClusters);
+// Now we define two functions, which correspond
+//  to the two steps of the iterative algorithm:
+
+// First, move the cluster centers based on the current
+//  assignment of points to clusters.
+d3.select("#moveMeans").on("click", function() {
+	// Reset the clusters
+	clusters.forEach( function (cluster) {
+		cluster.x = 0; cluster.y = 0; cluster.n = 0;
+	} );
+
+	
+	// Sum up x and y coordinates
+	points.forEach( function (point) {
+	    clusters[ point.cluster ].x += point.x;
+	    clusters[ point.cluster ].y += point.y;
+		clusters[ point.cluster ].n ++;
+	});
+	
+	// Divide to get the average
+	clusters.forEach( function (cluster) {
+		cluster.x /= cluster.n;
+		cluster.y /= cluster.n;
+	});
+	
+	// Now change the underlying data and move the
+	//  <text> elements.
+	clusterTexts.data(clusters);
+	clusterTexts.transition()
+	  .attr("x", function (cluster) { return xScale(cluster.x); } )
+	  .attr("y", function (cluster) { return yScale(cluster.y); } );
+});
+
+d3.select("#reveal").on("click", function() {
+	if (reveal == false){
+
+		pointCircles.data(points);
+
+		pointCircles
+			.style("fill", function (point) { if (point.n === 1){
+				return "blue";
+			}else if (point.n === 2){
+				return "red";
+			}else if (point.n === 3){
+				return "green"
+			}
+			else{
+				return "black"
+			}});
+
+		pointTexts.data(points);
+		pointTexts
+			.text(function (point) { if (point.n === 1){
+				return "guard";
+			}else if (point.n === 2){
+				return "forward";
+			}else{
+				return "center"
+			}})
+		  	.attr("x", function (point) { return xScale(point.x); })
+		  	.attr("y", function (point) { return yScale(point.y); });
+	
+				reveal = true;
+		
+	}
+	else{
+
+		reveal = false;
+		pointCircles.data(points);
+
+
+		pointCircles.style("fill", function (point) { if (point.cluster === 0){
+				return "#bbbbff";
+			}else if (point.cluster === 1){
+				return "#99ff99";
+			}else if (point.cluster === 2){
+				return "#ff7777"
+			}});
+
+
+		pointTexts.data(points);
+		pointTexts.text(function (point) { return point.cluster; });
+		
+	}
+});
+
+
+
+// Second, Reassign points to their nearest cluster center.
+d3.select("#clusterPoints").on("click", function () {
+	// Consider every point...
+  	points.forEach( function (point) { 
+		var shortestDistance = Number.POSITIVE_INFINITY;
+		// Find the nearest cluster...
+		clusters.forEach( function (cluster, id) {
+			
+			var distance = Math.sqrt(Math.pow(point.x - cluster.x, 2) + Math.pow(point.y - cluster.y, 2));
+			if (distance < shortestDistance) {
+				shortestDistance = distance;
+				point.cluster = id;
+			}
+		} );
+	} );
+			
+	// Update the text of the points to reflect the
+	// new cluster assignments.
+
+	pointCircles.data(points);
+
+
+	pointCircles.style("fill", function (point) { if (point.cluster === 0){
+			return "#bbbbff";
+		}else if (point.cluster === 1){
+			return "#99ff99";
+		}else if (point.cluster === 2){
+			return "#ff7777"
+		}});
+	
+	pointTexts.data(points);
+	pointTexts.text(function (point) { return point.cluster; });
+	
+});
+
+</script>
+</body>
+</html>

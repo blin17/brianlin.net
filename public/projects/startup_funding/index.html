@@ -1,0 +1,666 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+            <title>Startup Funding Sources</title>
+            <link rel="stylesheet" href="jquery-ui-1.10.4.custom.min.css" />
+            <script src="jquery-1.10.2.js"></script>
+            <script src="jquery-ui-1.10.4.custom.min.js"></script>
+            <script src="http://d3js.org/d3.v3.min.js"></script>
+            <script src="http://d3js.org/queue.v1.min.js"></script>
+            <script src="http://d3js.org/topojson.v1.min.js"></script>
+            <style>
+                html{
+                    width:100%;
+                    height:100%;
+                    float:left;
+                }
+                *{
+                    font-family: Futura, "Trebuchet MS", Arial, sans-serif;
+                    color:#3b3b3b;
+                }
+                body{
+                    background-color:#202143;
+                    width:100%;
+                    height:100%;
+                    float:left;
+                }
+                #slider_div{
+                    width:1100px;
+                    height:auto;
+                    margin:auto;
+                    margin-bottom:20px;
+                    margin-top:20px;
+                }
+
+                .slider_label{
+                    float:left;
+                    height:auto;
+                    font-size:16px;
+                    margin:0px;
+                    margin-top:-4px;
+                    padding:0px;
+                    color:#efeff0;
+                }
+                #sl1{
+                    width:15px;
+                }
+                #sl2{
+                    width:35px;
+                    text-align:right;
+                    margin-right:20px;
+                }
+                #slider {
+                    width: 930px;
+                    padding:0px;
+                    margin:0px;
+                    background: #C2C2C2;
+                    border-style:solid;
+                    border-color:#efeff0;
+                    border-radius:1px;
+                    border-width:1px;
+                    float:left;
+                    margin-bottom:10px;
+                    margin-rig
+                }
+                #slider .ui-slider-range {
+                    background: #808080;
+                }
+                #slider .ui-slider-handle {
+                    background: #ac3333;
+                    border-style:solid;
+                    border-color:#efeff0;
+                    border-width:1px;
+                    border-radius:5px;
+                    height:25px;
+                    width:15px;
+                    margin-top: -3px;
+                    cursor:pointer;
+                }
+                button{
+                    float:left;
+                    width:45px;
+                    margin-left:4px;
+                    margin-top:-2px;
+                    cursor:pointer;
+                    background-color:#efeff0;
+                    border-radius:3px;
+                    border-color:#3b3b3b;
+                    border-style:solid;
+                    border-width:1px;
+                }
+                svg{
+                    -webkit-transition: -webkit-transform 0.5s ease-in-out;
+                    transition: transform 0.5s ease-in-out;
+                    -ms-transition: -ms-transform 0.5s ease-in-out;
+                    -moz-transition: -moz-transform 0.5s ease-in-out;
+                    //transform: scale(3,3);
+                    //-ms-transform:scale(3,3); /* IE 9 */
+                    //-webkit-transform: scale(1.8,1.8) translate(300px,-80px); /* Opera, Chrome, and Safari */
+                }
+                img{
+                    width:16px;
+                    height:16px;
+                    float:left;
+                    padding-left:10px;
+                    padding-right:5px;
+                    visibility:hidden;
+                }
+                #checkbox_div{
+                    background-color:white;
+                    width: 200px;
+                    float:left;
+                    border-radius:1px;
+                    border-top-left-radius: 0px;
+                    border-bottom-left-radius: 0px;
+                    border-style:solid;
+                    border-color:#efeff0;
+                    border-width:1px;
+                    box-sizing:border-box;
+                    height:504px;
+                }
+                #main{
+                    width:1153px;
+                    height:500px;
+                    margin:auto;
+                    position:relative;
+                }
+                input{
+                    width:20px;
+                    margin-left:10px;
+                    visibility:hidden;
+                    position:absolute;
+                    z-index:-1000;
+                }
+                label p{
+                    padding:0px;
+                    margin:0px;
+                    margin-left:5px;
+                    float:left;
+                    width:160px;
+                }
+                .company_div{
+                    width:100%;
+                    height:18px;
+                    padding-top:12px;
+                    padding-bottom:12px;
+                    vertical-align: center;
+                    border-width:1px;
+                    border-bottom-style:solid;
+                    border-color:#efeff0;
+                    cursor:pointer;
+                }
+                #Whisper{
+                    padding-top:11px;
+                    padding-bottom:11px;
+                    border-style:none;
+                }
+
+                h3{
+                    width:150px;
+                    height:20px;
+                    padding:0px;
+                    margin:0px;
+                    float:left;
+                    color:#efeff0;
+                    font-size:16px;
+                    font-weight:500;
+                    margin-bottom:10px;
+                }
+
+                #company_age{
+                    color:#efeff0;
+                    padding:0px;
+                    margin-bottom:10px;
+                }
+
+                #company_age span{
+                    background-color:#efeff0;
+                    width:auto;
+                    padding-left:5px;
+                    padding-right:5px;
+                    box-sizing:border-box;
+                    border-radius:3px;
+                    border-color:#3b3b3b;
+                    border-style:solid;
+                    border-width:1px;
+                }
+
+                h1{
+                    width:100%;
+                    min-width:1150px;
+                    text-align:center;
+                    color:#3b3b3b;
+                    background-color:#efeff0;
+                    margin:0px;
+                    padding:0px;
+                    top:0px;
+                    left:0px;
+                    position:absolute;
+                    border-bottom-style:solid;
+                    border-color:#808080;
+                    border-width:2px;
+                    padding-bottom:2px;
+                }
+                h4{
+                    width:100%;
+                    padding:0px;
+                    padding-top:2px;
+                    padding-bottom:5px;
+                    margin:0px;
+                    font-size:16px;
+                    text-align:center;
+                    border-bottom-style:solid;
+                    border-width:2px;
+                    border-color:#efeff0;
+                }
+
+                #svg_holder{
+                    width:950px;
+                    height:504px;
+                    background-color:#d4d6d7;
+                    border-radius:1px;
+                    border-top-right-radius: 0px;
+                    border-bottom-right-radius: 0px;
+                    border-style:solid;
+                    border-color:#efeff0;
+                    border-width:1px;
+                    box-sizing:border-box;
+                    border-right-style:none;
+                    float:left;
+                    overflow:hidden;
+                    position:relative;
+                }
+                #all_check{
+                    background-color:#d3d3d4;
+                }
+
+                .info_box{
+                    background-color:#efeff0;
+                    border-width:1px;
+                    border-radius:2px;
+                    border-style:solid;
+                    border-color:#808080;
+                    position:absolute;
+                    width:250px;
+                    padding-left:20px;
+                    height:100pxpx;
+                    top:30px;
+                    left:565px;
+                    display:none;
+                }
+                #description{
+                    width:1130px;
+                    height:65px;
+                    margin:auto;
+                    background-color:#d4d6d7;
+                    border-color:#efeff0;
+                    border-radius:2px;
+                    border-style:solid;
+                    border-width:1px;
+                    margin-top:30px;
+                    padding:10px;
+                }
+            </style> 
+            <script>
+/* ================================================================================================================ */
+                var json_obj = JSON.parse('{"arr":[{"name":"Workday","founded_month":"3","founded_year":"2005","total_money_raised":"175M","funding_rounds":["-1", "15M", "15M", "15M", "15M", "15M", "15M", "15M", "15M", "15M", "15M", "15M", "15M", "15M", "15M", "15M", "15M", "15M", "15M", "15M", "15M", "15M", "15M", "15M", "15M", "15M", "15M", "15M", "15M", "15M", "15M", "15M", "15M", "15M", "15M", "15M", "15M", "15M", "15M", "15M", "15M", "15M", "15M", "15M", "15M", "15M", "15M", "15M", "15M", "15M", "90M", "90M", "90M", "90M", "90M", "90M", "90M", "90M", "90M", "90M", "90M", "90M", "90M", "90M", "90M", "90M", "90M", "90M", "90M", "90M", "90M", "90M", "90M", "90M", "90M", "90M", "90M", "90M", "175M", "175M", "175M", "175M", "175M", "175M", "175M", "175M", "175M", "175M", "175M", "175M", "175M", "175M", "175M", "175M", "175M", "175M", "175M", "175M", "175M"],"ipo":"10/15/2012","fips":"06001"},{"name":"Facebook","founded_month":"2","founded_year":"2004","total_money_raised":"2.4B","funding_rounds":["-1", "-1", "-1", "-1", "-1", "-1", "500k", "500k", "500k", "500k", "500k", "500k", "500k", "500k", "13.2M", "13.2M", "13.2M", "13.2M", "13.2M", "13.2M", "13.2M", "13.2M", "13.2M", "13.2M", "13.2M", "40.7M", "40.7M", "40.7M", "40.7M", "40.7M", "40.7M", "40.7M", "40.7M", "40.7M", "40.7M", "40.7M", "280.7M", "280.7M", "280.7M", "280.7M", "280.7M", "280.7M", "280.7M", "280.7M", "280.7M", "280.7M", "280.7M", "280.7M", "280.7M", "280.7M", "280.7M", "280.7M", "280.7M", "280.7M", "340.7M", "355.7M", "355.7M", "415.7M", "415.7M", "515.7M", "515.7M", "715.7M", "715.7M", "715.7M", "715.7M", "715.7M", "715.7M", "715.7M", "715.7M", "715.7M", "715.7M", "715.7M", "715.7M", "925.7M", "925.7M", "925.7M", "925.7M", "925.7M", "925.7M", "925.7M", "925.7M", "925.7M", "925.7M", "925.7M", "925.7M", "925.7M", "2.4B", "2.4B", "2.4B", "2.4B", "2.4B", "2.4B", "2.4B", "2.4B", "2.4B", "2.4B", "2.4B", "2.4B", "2.4B", "2.4B"],"ipo":"5/18/2012","fips":"06081"},{"name":"Uber","founded_month":"3","founded_year":"2009","total_money_raised":"307.5M","funding_rounds":["-1", "-1", "-1", "-1", "200k", "200k", "200k", "200k", "200k", "200k", "200k", "200k", "200k", "200k", "200k", "200k", "200k", "200k", "1.5M", "1.5M", "1.5M", "1.5M", "12.5M", "12.5M", "12.5M", "12.5M", "12.5M", "12.5M", "12.5M", "12.5M", "12.5M", "12.5M", "49.5M", "49.5M", "49.5M", "49.5M", "49.5M", "49.5M", "49.5M", "49.5M", "49.5M", "49.5M", "49.5M", "49.5M", "49.5M", "49.5M", "49.5M", "49.5M", "49.5M", "49.5M", "49.5M", "49.5M", "307.5M", "307.5M", "307.5M", "307.5M", "307.5M", "307.5M", "307.5M", "307.5M", "307.5M", "307.5M", "307.5M", "307.5M", "307.5M", "307.5M", "307.5M", "307.5M", "307.5M", "307.5M", "307.5M", "307.5M", "307.5M", "307.5M", "307.5M", "307.5M", "307.5M", "307.5M", "307.5M", "307.5M", "307.5M", "307.5M", "307.5M", "307.5M", "307.5M", "307.5M", "307.5M", "307.5M", "307.5M", "307.5M", "307.5M", "307.5M", "307.5M", "307.5M", "307.5M", "307.5M", "307.5M", "307.5M", "307.5M", "307.5M"],"ipo":"","fips":"06075"},{"name":"Snapchat","founded_month":"5","founded_year":"2011","total_money_raised":"123M",                                           "funding_rounds":["-1", "-1", "-1", "-1", "-1", "-1", "-1", "-1", "-1", "-1", "-1", "-1", "485k", "485k", "485k", "485k", "485k", "485k", "485k", "13M", "13M", "13M", "13M", "13M", "13M", "73M", "73M", "73M", "73M", "73M", "73M", "123M", "123M", "123M", "123M", "123M", "123M", "123M", "123M", "123M", "123M", "123M", "123M", "123M", "123M", "123M", "123M", "123M", "123M", "123M", "123M", "123M", "123M", "123M", "123M", "123M", "123M", "123M", "123M", "123M", "123M", "123M", "123M", "123M", "123M", "123M", "123M", "123M", "123M", "123M", "123M", "123M", "123M", "123M", "123M", "123M", "123M", "123M", "123M", "123M", "123M", "123M", "123M", "123M", "123M", "123M", "123M", "123M", "123M", "123M", "123M", "123M", "123M", "123M", "123M", "123M", "123M", "123M", "123M", "123M"],"ipo":"","fips":"06037"},{"name":"Mongo DB","founded_month":"11","founded_year":"2007","total_money_raised":"231.1M","funding_rounds":["-1", "-1", "-1", "-1", "-1", "-1", "-1", "1.5M", "1.5M", "1.5M", "1.5M", "1.5M", "1.5M", "1.5M", "1.5M", "1.5M", "1.5M", "1.5M", "1.5M", "1.5M", "1.5M", "1.5M", "1.5M", "4.9M", "4.9M", "4.9M", "4.9M", "4.9M", "4.9M", "4.9M", "4.9M", "4.9M", "4.9M", "4.9M", "4.9M", "4.9M", "11.4M", "11.4M", "11.4M", "11.4M", "11.4M", "11.4M", "11.4M", "11.4M", "11.4M", "19.1M", "19.1M", "19.1M", "19.1M", "61.1M", "61.1M", "61.1M", "61.1M", "61.1M", "61.1M", "61.1M", "61.1M", "61.1M", "61.1M", "61.1M", "61.1M", "61.1M", "61.1M", "61.1M", "61.1M", "61.1M", "211.1M", "211.1M", "211.1M", "211.1M", "211.1M", "211.1M", "211.1M", "211.1M", "211.1M", "211.1M", "211.1M", "211.1M", "211.1M", "211.1M", "211.1M", "211.1M", "211.1M", "211.1M", "211.1M", "211.1M", "211.1M", "211.1M", "211.1M", "211.1M", "211.1M", "211.1M", "211.1M", "211.1M", "211.1M", "211.1M", "211.1M", "211.1M", "211.1M", "211.1M"],"ipo":"","fips":"36061"},{"name":"Codecademy","founded_month":"1","founded_year":"2011","total_money_raised":"12.5M","funding_rounds":["-1", "-1", "-1", "-1", "-1", "-1", "-1", "-1", "2.5M", "2.5M", "2.5M", "2.5M", "2.5M", "2.5M", "12.5M", "12.5M", "12.5M", "12.5M", "12.5M", "12.5M", "12.5M", "12.5M", "12.5M", "12.5M", "12.5M", "12.5M", "12.5M", "12.5M", "12.5M", "12.5M", "12.5M", "12.5M", "12.5M", "12.5M", "12.5M", "12.5M", "12.5M", "12.5M", "12.5M", "12.5M", "12.5M", "12.5M", "12.5M", "12.5M", "12.5M", "12.5M", "12.5M", "12.5M", "12.5M", "12.5M", "12.5M", "12.5M", "12.5M", "12.5M", "12.5M", "12.5M", "12.5M", "12.5M", "12.5M", "12.5M", "12.5M", "12.5M", "12.5M", "12.5M", "12.5M", "12.5M", "12.5M", "12.5M", "12.5M", "12.5M", "12.5M", "12.5M", "12.5M", "12.5M", "12.5M", "12.5M", "12.5M", "12.5M", "12.5M", "12.5M", "12.5M", "12.5M", "12.5M", "12.5M", "12.5M", "12.5M", "12.5M", "12.5M", "12.5M", "12.5M", "12.5M", "12.5M", "12.5M", "12.5M", "12.5M", "12.5M", "12.5M", "12.5M", "12.5M"],"ipo":"","fips":"36061"},{"name":"Foursquare","founded_month":"3","founded_year":"2009","total_money_raised":"162.4M","funding_rounds":["-1", "-1", "-1", "-1", "-1", "1.4M", "1.4M", "1.4M", "1.4M", "1.4M", "1.4M", "1.4M", "1.4M", "1.4M", "1.4M", "1.4M", "1.4M", "21.4M", "21.4M", "21.4M", "21.4M", "21.4M", "21.4M", "21.4M", "21.4M", "21.4M", "21.4M", "21.4M", "21.4M", "71.4M", "71.4M", "71.4M", "71.4M", "71.4M", "71.4M", "71.4M", "71.4M", "71.4M", "71.4M", "112.4M", "112.4M", "112.4M", "112.4M", "112.4M", "112.4M", "112.4M", "112.4M", "147.4M", "147.4M", "162.4M", "162.4M", "162.4M", "162.4M", "162.4M", "162.4M", "162.4M", "162.4M", "162.4M", "162.4M", "162.4M", "162.4M", "162.4M", "162.4M", "162.4M", "162.4M", "162.4M", "162.4M", "162.4M", "162.4M", "162.4M", "162.4M", "162.4M", "162.4M", "162.4M", "162.4M", "162.4M", "162.4M", "162.4M", "162.4M", "162.4M", "162.4M", "162.4M", "162.4M", "162.4M", "162.4M", "162.4M", "162.4M", "162.4M", "162.4M", "162.4M", "162.4M", "162.4M", "162.4M", "162.4M", "162.4M", "162.4M", "162.4M", "162.4M", "162.4M", "162.4M"],"ipo":"","fips":"36061"},{"name":"Lyft","founded_month":"1","founded_year":"2007","total_money_raised":"332.5M","funding_rounds":["-1", "-1", "-1", "-1", "-1", "-1", "-1", "-1", "-1", "-1", "-1", "-1", "-1", "-1", "-1", "-1", "-1", "-1", "-1", "-1", "-1", "-1", "-1", "-1", "-1", "-1", "-1", "-1", "300k", "300k", "300k", "300k", "300k", "300k", "300k", "300k", "300k", "300k", "300k", "300k", "300k", "300k", "1.5M", "1.5M", "1.5M", "1.5M", "1.5M", "1.5M", "1.5M", "1.5M", "1.5M", "1.5M", "1.5M", "1.5M", "1.5M", "7.5M", "7.5M", "7.5M", "7.5M", "7.5M", "7.5M", "7.5M", "7.5M", "7.5M", "7.5M", "7.5M", "7.5M", "7.5M", "7.5M", "7.5M", "7.5M", "22.5M", "22.5M", "22.5M", "22.5M", "82.5M", "82.5M", "82.5M", "82.5M", "82.5M", "82.5M", "82.5M", "82.5M", "82.5M", "82.5M", "82.5M", "332.5M", "332.5M", "332.5M", "332.5M", "332.5M", "332.5M", "332.5M", "332.5M", "332.5M", "332.5M", "332.5M", "332.5M", "332.5M"],"ipo":"","fips":"06075"},{"name":"Dropbox","founded_month":"6","founded_year":"2007","total_money_raised":"1.1B","funding_rounds":["-1", "-1", "-1", "-1", "-1", "-1", "-1", "-1", "-1", "-1", "-1", "-1", "-1", "-1", "1.2M", "1.2M", "1.2M", "1.2M", "1.2M", "1.2M", "1.2M", "1.2M", "1.2M", "1.2M", "1.2M", "1.2M", "1.2M", "1.2M", "7.2M", "7.2M", "7.2M", "7.2M", "7.2M", "7.2M", "7.2M", "7.2M", "7.2M", "7.2M", "7.2M", "7.2M", "7.2M", "7.2M", "7.2M", "7.2M", "7.2M", "7.2M", "7.2M", "7.2M", "7.2M", "7.2M", "7.2M", "257.2M", "257.2M", "257.2M", "257.2M", "257.2M", "257.2M", "257.2M", "257.2M", "257.2M", "257.2M", "257.2M", "257.2M", "257.2M", "257.2M", "257.2M", "257.2M", "257.2M", "257.2M", "257.2M", "257.2M", "257.2M", "257.2M", "257.2M", "257.2M", "257.2M", "257.2M", "257.2M", "607.2M", "607.2M", "607.2M", "1107.2M", "1107.2M", "1107.2M", "1107.2M", "1107.2M", "1107.2M", "1107.2M", "1107.2M", "1107.2M", "1107.2M", "1107.2M", "1107.2M", "1107.2M", "1107.2M", "1107.2M", "1107.2M", "1107.2M", "1107.2M"],"ipo":"","fips":"06075"},{"name":"Whisper","founded_month":"1","founded_year":"2012","total_money_raised":"54M","funding_rounds":["-1", "-1", "-1", "-1", "-1", "-1", "-1", "-1", "-1", "-1", "-1", "-1", "-1", "-1", "3M", "3M", "3M", "3M", "3M", "24M", "24M", "24M", "24M", "24M", "24M", "254M", "254M", "254M", "254M", "254M", "254M", "254M", "254M", "254M", "254M", "254M", "254M", "254M", "254M", "254M", "254M", "254M", "254M", "254M", "254M", "254M", "254M", "254M", "254M", "254M", "254M", "254M", "254M", "254M", "254M", "254M", "254M", "254M", "254M", "254M", "254M", "254M", "254M", "254M", "254M", "254M", "254M", "254M", "254M", "254M", "254M", "254M", "254M", "254M", "254M", "254M", "254M", "254M", "254M", "254M", "254M", "254M", "254M", "254M", "254M", "254M", "254M", "254M", "254M", "254M", "254M", "254M", "254M", "254M", "254M", "254M", "254M", "254M", "254M"],"ipo":"","fips":"06037"}]}');
+                
+                var selectedCompanies = [];
+                function updateSelectedCompanies() {
+                    selectedCompanies = [];
+                    var v = document.getElementsByName("slct[]");
+                    for (var j = 0; j < v.length; j++) {
+                        if (v[j].checked) {
+                            selectedCompanies.push(v[j].value);
+                        }
+                    }
+                }
+            
+                function get(i) { return json_obj["arr"][i]; }
+                function makeNumber(s) { return parseInt(s); }
+               
+                function getRadius(s) {
+                    if (s.substring(0,1) == "-") {
+                        return 3;
+                    }
+                    var v = s.substring(s.length-1);
+                    var radius;
+                    if (v == "k") {
+                        r = parseFloat(s.substring(0,s.length-1));
+                        radius = makeNumber(r*1000);
+                    } else if (v == "M") {
+                        r = parseFloat(s.substring(0,s.length-1));
+                        radius = makeNumber(r*1000000);
+                    } else if (v == "B") {
+                        r = parseFloat(s.substring(0,s.length-1));
+                        radius = makeNumber(r*1000000000);
+                    }
+                    var scale = d3.scale.linear().domain([0,10000000000]).range([50,1000]);
+                    return scale(radius);
+                }
+            function getLat(fips) {
+                if (fips == "06001") {
+                    return [-121.9,37.6];
+                } else if (fips == "06081") {
+                    return [-122,37.5];
+                } else if (fips == "06075") {
+                    return [-122,38];
+                } else if (fips == "06037") {
+                    return [-118,34];
+                } else if (fips == "36061") {
+                    return [-74,41];
+                }
+            }
+            function arrHas(arr, e) {
+                for (i in arr) {
+                    if (e == arr[i]) {
+                        return true;
+                    }
+                }
+                return false;
+            }
+
+            function checkAllBoxes(){
+                $(".company_div input").each(function(){
+                    $(this).prop("checked", true);
+                    var id = $(this).parent().attr("id");
+                    $("#all_check img").css("visibility", "visible");
+                });
+            }
+
+            function uncheckAllBoxes(){
+                $(".company_div input").each(function(e){
+                    var id = $(this).parent().attr("id");
+                    $("#" + id + " input").prop("checked", false);
+                    $("#" + id.split("_")[0] + "_info").css("display","none");
+                });
+            }
+
+            function uncheckAllExcept(x){
+                $(".company_div input").each(function(e){
+                    var id = $(this).parent().attr("id");
+                    if (id != x){
+                        $("#" + id + " input").prop("checked", false);
+                        $("#" + id + " img").css("visibility", "hidden");
+                        if (id != "all_check"){
+                            $("#" + id.split("_")[0] + "_info").css("display","none");
+                        }
+                    }
+                });
+            }
+
+            function handleCheckboxClicks(){
+                $(".company_div").click(function(e){
+                    e.preventDefault();
+                    var id = $(this).attr("id");
+                    //console.log(id);
+                    uncheckAllExcept(id);
+                    if (id != "all_check"){
+                        $("#" + id + " input").prop("checked", true);
+                        $("#" + id + " img").css("visibility", "visible");
+                        var xTranslate = $("#" + id.split("_")[0]).attr("cx");
+                        var yTranslate = $("#" + id.split("_")[0]).attr("cy");
+                        var xMid = $("svg").attr("width") / 2 - xTranslate - 90;
+                        var yMid = $("svg").attr("height") / 2 - yTranslate;
+                        $("#svg_holder svg").css("transform", "scale(1.8,1.8), translate(" + xMid + "px," + yMid + "px)");
+                        $("#svg_holder svg").css("-ms-transform", "scale(1.8,1.8) translate(" + xMid + "px," + yMid + "px)");
+                        $("#svg_holder svg").css("-webkit-transform", "scale(1.8,1.8) translate(" + xMid + "px," + yMid + "px)");
+                        $("#svg_holder svg").css("-moz-transform", "scale(1.8,1.8) translate(" + xMid + "px," + yMid + "px)");
+                        $("#" + id.split("_")[0] + "_info").css("display","inline");
+                    }
+                   else{
+                    checkAllBoxes();
+                    $("#svg_holder svg").css("transform", "scale(1,1)");
+                   }
+                   if(pause){
+                    moveSlider();
+                   }
+                });
+            }
+
+            function HSVtoRGB(h, s, v) {
+                var r, g, b, i, f, p, q, t;
+                if (h && s === undefined && v === undefined) {
+                    s = h.s, v = h.v, h = h.h;
+                }
+                i = Math.floor(h * 6);
+                f = h * 6 - i;
+                p = v * (1 - s);
+                q = v * (1 - f * s);
+                t = v * (1 - (1 - f) * s);
+                switch (i % 6) {
+                    case 0: r = v, g = t, b = p; break;
+                    case 1: r = q, g = v, b = p; break;
+                    case 2: r = p, g = v, b = t; break;
+                    case 3: r = p, g = q, b = v; break;
+                    case 4: r = t, g = p, b = v; break;
+                    case 5: r = v, g = p, b = q; break;
+                }
+                return {
+                    r: Math.floor(r * 255),
+                    g: Math.floor(g * 255),
+                    b: Math.floor(b * 255)
+                };
+            }
+/* ================================================================================================================ */
+                var pause = true;
+                function slideChange(e,v) {
+                    if (! pause){
+                        setTimeout("moveSlider();", 100);   
+                    }
+                    $("#company_age span").text(v.value);
+                }
+            
+                function slideSlide(v) {
+                    var c = document.getElementById("myCanvas");
+                    c.width = v;
+                    c.height = v;
+                    var ctx = c.getContext("2d");
+                    ctx.fillStyle = "#FF0000";
+                    ctx.fillRect(0,0,v,v);
+                }
+            
+                function sleep(ms) {
+                    var start = new Date().getTime(), expire = start + ms;
+                    while (new Date().getTime() < expire) { }
+                    return;
+                }
+            
+								
+				var val = 0;
+                $(function() {
+                    $("#slider").slider({
+                        orientation: "horizontal",
+                        range: "min",
+                        min: 0,
+                        max: 100, //#changed this to 100 b/c that's how long the funding_rounds array is
+                        value: 0,
+                        animate: "slow",
+                        slide:
+                            function( event, ui ) {
+                                slideSlide(ui.value)
+                            },
+                        change: function(event, ui){slideChange(event, ui)}
+                    });
+
+                    $("#start").click( function(){
+                        if (pause == false){
+                            pause = true;
+                            $("#start").text("Start");
+                        }
+                        else{
+                            pause = false;
+                            setTimeout("moveSlider();", 100); 
+                            $("#start").text("Pause");
+                        }
+                    });
+										
+                    $("#reset").click( function(){
+                        pause = true;
+                        $("#start").text("Start");
+                        val = 0;
+                        moveSlider();
+                    });
+										
+                });
+								
+				function moveSlider(){
+                    $("#slider").slider('value', val);
+                    if (!pause){
+                        val +=1;
+                    }
+					if (val >= 99){
+						val = 0;
+					}
+                    
+                    for (var i = 0; i < json_obj["arr"].length; i++) {
+                        var company = get(i);
+                        updateSelectedCompanies();
+                        if (arrHas(selectedCompanies, company.name)) { 
+                            var c = document.getElementById(company.name.replace(/ /g,''));
+                            c.setAttribute('r', getRadius(company.funding_rounds[val]));
+                            c.setAttribute("fill-opacity", .4);
+                            c = document.getElementById(company.name.replace(/ /g,'')+"_label");
+                            c.setAttribute("style", "fill:red");
+
+                            info_p = document.getElementById(company.name.replace(/ /g,'')+"_info_p");
+                            info_p.innerHTML = "Company Name: ";
+                            info_p.innerHTML += company.name;
+                            info_p.innerHTML += "<br/>Current Funding: $";
+                            if (company.funding_rounds[val] == -1){
+                                info_p.innerHTML += "0";
+                            }
+                            else{
+                                info_p.innerHTML += company.funding_rounds[val];
+                            }
+                        } else {
+                            var c = document.getElementById(company.name.replace(/ /g,''));
+                            c.setAttribute("fill-opacity", 0);
+                            c = document.getElementById(company.name.replace(/ /g,'')+"_label");
+                            c.setAttribute("style", "fill:none");
+                            
+                        }
+                    }
+
+
+				}
+									
+				
+								
+								
+            </script>
+    </head>
+
+
+    <body class="ui-widget-content" style="border:0;">
+        <h1>Funding Data From 10 Successful Post 2004 Tech Startups</h1>
+        <p class="ui-state-default ui-corner-all ui-helper-clearfix" style="padding:4px;">
+        <span class="ui-icon ui-icon-pencil" style="float:left; margin:-2px 5px 0 0;"></span>
+        </p>
+        <p id = "description">
+            This visualization shows how some of the most popular modern technology startups were funded.  Click start below to make the graph step through time,
+            showing the amount of funding that each selected company raised at various points in their life cycle.  The plotted circle for each startup is scaled to indicate amount of current funding.  Select individual companies for more detailed info.
+        </p>
+        <div id = "slider_div">
+            <h3>Age of Company:</h3>
+            <p id = "company_age"><span>0</span> months</p>
+            <p id = "sl1" class = "slider_label">0</p>
+            <div id="slider"></div>
+            
+            <p id = "sl2" class = "slider_label">100</p>
+            <button type="button" id= "start">Start</button>
+            <button type="button" id= "reset">Reset</button>
+        </div>
+		<div id = "main">
+            <div id = "svg_holder"></div>
+
+
+				<script>
+
+                
+				/*  Variables - Sets the svg size and creates a rgb scale for converting rent to rgb values
+				 *	queue() - preloads the county map file and also loads in the rent data
+				 */
+
+				var width = 950,
+				    height = 500,
+						rateById = d3.map(),
+						projection = d3.geo.albers(),
+						path = d3.geo.path()
+				 	 					.projection(projection),
+						svg = d3.select("#svg_holder").append("svg")
+				    				.attr("width", width)
+				    				.attr("height", height),
+						quantize = d3.scale.quantize()
+				    						.domain([400, 1700])
+				    						.range(d3.range(255).map(function(i) { return "rgb(" + (255) + "," + (255-i) + "," + 20 + ")"; }));
+				queue()
+				  	.defer(d3.json, "us.json")
+				    .await(ready);
+
+
+				function ready(error, us) {
+				  var states = topojson.feature(us, us.objects.states),
+				      state = states.features,
+							counties = topojson.feature(us, us.objects.counties),
+				  		county = counties.features;
+							
+
+
+				  svg.append("g")
+				    .attr("class", "counties")
+				    .selectAll("path")
+				    .data(state)
+				    .enter().append("path")
+				      .attr("fill", "#666")
+				      .attr("d", path);
+			
+				  svg.append("path")
+				      .datum(topojson.mesh(states, state, function(a, b) { return a !== b; }))
+				      .attr("class", "states")
+				      .attr("d", path);
+					
+                    var step = 300 / json_obj["arr"].length;
+                    var initH = 0;
+                    var initS = 40.1;
+                    var initV = 89.0;
+                    for (var i = 0; i < json_obj["arr"].length; i++) {
+                        var company = get(i);
+                        var city = projection(getLat(company.fips));
+                        var color = HSVtoRGB(initH + i * step / 360, initS / 100, initV / 100);
+                        var name = company.name.replace(/ /g,'');
+                        svg.append("circle").attr("id", name).attr("cx", city[0]).attr("cy", city[1]).attr("r", getRadius(company.funding_rounds[0])).attr("fill", "rgba(" + color.r + ", " + color.g + ", " + color.b + ", 1)");
+                        svg.append("text").attr("x", city[0]).attr("y", city[1]+5).attr("class", "clabel").text(""/*company.name*/).style("fill","none").attr("id",company.name.replace(/ /g,'')+"_label");
+                        var info = document.createElement("div");
+                        info.setAttribute("id", company.name.replace(/ /g,'') + "_info");
+                        info.setAttribute("class", "info_box");
+
+                        var info_p = document.createElement("p");
+                        info_p.setAttribute("id", company.name.replace(/ /g,'') + "_info_p");
+                        info_p.innerHTML = "Company Name:";
+                        info_p.innerHTML += company.name;
+                        info_p.innerHTML += "<br/>Current Funding: $0";
+                        info.appendChild(info_p);
+
+                        document.getElementById('svg_holder').appendChild(info);
+                    }
+                    
+                    // CHECKBOXES
+                    // create the necessary elements
+                    var label= document.createElement("label");
+                    var all_div = document.createElement("div");
+                    all_div.setAttribute('id', "all_check");
+                    all_div.setAttribute('class', "company_div");
+                    var descr = document.createElement("p");
+                    descr.innerHTML = "All Companies";
+                    var box = document.createElement("input");
+                    box.type = "checkbox";
+                    box.name = "slct[]";
+                    box.value = "All";
+                    var img = document.createElement("img");
+                    img.src = "check.svg";
+                    img.alt = "checkbox";
+                    all_div.appendChild(box);
+                    all_div.appendChild(img);
+                    all_div.appendChild(descr);
+                    label.appendChild(all_div);
+
+                    for (var i = 0; i < json_obj["arr"].length; i++) {
+                        var color = HSVtoRGB(initH + i * step / 360, initS / 100, initV / 100);
+                        var company_name = get(i).name;
+                        var company_div = document.createElement("div");
+                        company_div.style.backgroundColor = "rgb(" + color.r + ", " + color.g + ", " + color.b + ")";
+                        company_div.setAttribute('class',"company_div");
+                        company_div.setAttribute('id', company_name.replace(/ /g,'') + "_check");
+                        var description = document.createElement("p");
+                        description.innerHTML =company_name; // label here
+                        var checkbox = document.createElement("input");
+                        
+                        checkbox.type = "checkbox";    // make the element a checkbox
+                        checkbox.name = "slct[]";      // give it a name we can check on the server side
+                        checkbox.value = company_name;         // make its value "pair"
+
+                        var img = document.createElement("img");
+                        img.src = "check.svg";
+                        img.alt = "checkbox";
+                        
+                        company_div.appendChild(checkbox);   // add the box to the element
+                        company_div.appendChild(img);
+                        company_div.appendChild(description);// add the description to the element
+                        label.appendChild(company_div);
+                    }
+                    // add the label element to your div
+                    document.getElementById('checkbox_div').appendChild(label);
+                    checkAllBoxes();
+                    handleCheckboxClicks();
+				}
+
+			</script>
+        
+        <div id="checkbox_div">
+            <h4>Select a Company</h4>
+        </div>
+        </div>
+    </body>
+</html>
