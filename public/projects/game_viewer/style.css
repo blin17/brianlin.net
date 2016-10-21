@@ -1,0 +1,130 @@
+
+*,body,html{
+	margin:0px;
+	padding:0px;
+	background-color: black;
+}
+svg text{
+	font-size: small;
+}
+#all{
+	margin: 10px;
+	width: 500px;
+	height:700px;
+}
+
+.main, #visitor, #home{
+	float:left;
+	margin: 10px;
+	background-color: black;
+	color: white;
+}
+ul{
+	list-style-type: none;
+}
+
+#home li{
+	color: #aaa;
+}
+#visitor li{
+	color: #CE1141;
+}
+.position{
+	color: yellow;
+}
+#speed_slider_holder{
+    width: 200px;
+    float: left;
+    margin-left: 5px;
+}
+#speed_slider_holder div{
+	color: white;
+    float: left;
+    margin-left: 10px;
+}
+#speed_slider{
+    width: 100px;
+    float: left;
+    margin-left: 10px;
+    margin-top: 5px;
+}
+
+#event_slider_holder{
+    width: 300px;
+    float: left;
+    margin-left: 5px;
+}
+#event_slider_holder div{
+	color: #666;
+    float: left;
+}
+#event_slider{
+    width: 200px;
+    float: left;
+    margin-left: 10px;
+    margin-top: 5px;
+ /*   background-color: #666;*/
+}
+#event_slider div{
+}
+
+
+svg{
+	border: dotted 5px white;
+	margin: 5px 0px;
+}
+#left{
+	float: left;
+}
+#right{
+	width:650px;
+}
+svg
+{
+	background-image: url('court.png');
+    background-size: 600px 300px;
+    
+}
+#scoreboard{
+	font-size:large;
+	float:left;
+	width: 650px;
+    background-color: black;
+}
+
+#scoreboard li{
+    display: inline;
+    margin-right: 10px;
+	color: #666;
+}
+#scoreboard .scores li{
+	font-weight: bold;
+	color: white;
+}
+
+#scoreboard .title{
+	color: #aaa;
+
+}
+.pause{
+	float:left;
+}
+.jump_event{
+	width:200px;
+	float:left;
+}
+.dropdown{
+	width: 180px;
+	float:left;
+}
+.dropdown-menu li{
+	background-color: white;
+	padding: 0px 10px;
+}
+
+#gamename{
+	font-size:large;
+	font-weight: bold;
+	color: #DCC098;
+	padding: 0px 10px;
+}
