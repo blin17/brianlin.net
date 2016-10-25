@@ -2,6 +2,4 @@
 
 Hi, I'm Brian Lin.
 
-I worked as a Program Manager at Microsoft. I graduated from Cornell University with a Bachelors of Science. I also studied abroad at the University of Hong Kong for a semester.
-
-At Cornell, I did research for Tanzeem Choudhury and Dan Cosley in the Information Science Department. I was also a Teaching Assistant for the Computer Science Department and I helped cofound TECH 1101, a series of seminars to help students learn how to get an internship.
+I graduated from Cornell University with a Bachelors of Science studying Information Science and Economics. I did research there on detecting stress in people using their speech data. I also studied abroad at the University of Hong Kong for a semester.

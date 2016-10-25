@@ -1,1 +1,1 @@
-![Brian's Face](/img/blin.jpg)
+![blin's face](/img/blin.jpg)
