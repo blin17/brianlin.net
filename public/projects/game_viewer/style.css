@@ -7,27 +7,48 @@
 svg text{
 	font-size: small;
 }
-#all{
+
+.play_by_play{
+	color: gray;
+	font-size: small;
+}
+.play_by_play_holder{
 	margin: 10px;
-	width: 500px;
-	height:700px;
+}
+.score{
+	font-weight: normal;
+}
+.scoring_play{
+	color: yellow;
 }
 
-.main, #visitor, #home{
+.play_by_play_date{
+	color: #666;
+}
+
+
+.visitor, .home{
 	float:left;
 	margin: 10px;
 	background-color: black;
 	color: white;
 }
+
+.main{
+	margin:0px auto;
+	width: 700px;
+}
+
 ul{
 	list-style-type: none;
 }
 
-#home li{
+.home{
 	color: #aaa;
 }
-#visitor li{
-	color: #CE1141;
+
+.visitor{
+	color: #aaa;
 }
 .position{
 	color: yellow;
@@ -73,36 +94,36 @@ svg{
 	border: dotted 5px white;
 	margin: 5px 0px;
 }
-#left{
+.bottom{
 	float: left;
 }
-#right{
+.top{
 	width:650px;
 }
 svg
 {
 	background-image: url('court.png');
-    background-size: 600px 300px;
+    background-size: 100% 100%;
     
 }
-#scoreboard{
+.scoreboard{
 	font-size:large;
 	float:left;
 	width: 650px;
     background-color: black;
 }
 
-#scoreboard li{
+.scoreboard li{
     display: inline;
     margin-right: 10px;
 	color: #666;
 }
-#scoreboard .scores li{
+.scoreboard .scores li{
 	font-weight: bold;
 	color: white;
 }
 
-#scoreboard .title{
+.scoreboard .title{
 	color: #aaa;
 
 }
@@ -122,9 +143,14 @@ svg
 	padding: 0px 10px;
 }
 
-#gamename{
+.gameinfo{
+	color: #DCC098;
 	font-size:large;
 	font-weight: bold;
-	color: #DCC098;
 	padding: 0px 10px;
+}
+
+.date {
+	font-weight: normal;
+	font-size: small;
 }
