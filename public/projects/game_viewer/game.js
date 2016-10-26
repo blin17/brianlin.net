@@ -22,6 +22,7 @@ function set_canvas_size(){
 	}
 	height = width /2;
 }
+set_canvas_size()
 
 let animation_speed = 21;
 let first_animation = true;
@@ -339,6 +340,7 @@ function createGameChooser() {
 
 function loadUIElements() {
 	main_div = $('<div>').attr('id', 'main'+game_index).attr('class', 'main');
+	header_div = $('<div>').attr('class', 'header').append('NBA Game Visualizer');
 	inner_div = $('<div>').attr('class', 'inner');
 	gameinfo_div = $('<div>').attr('class','gameinfo');
 	top_div = $('<div>').attr('class', 'top');
@@ -348,7 +350,7 @@ function loadUIElements() {
 	play_by_play_div = $('<div>').attr('class', 'play_by_play_holder').append($('<ul>').attr('class', 'play_by_play'));
 	top_div.append([score_div, createPauseButton(), createSpeedSlider(), event_slider_holder]);
 	inner_div.append([top_div, bottom_div, play_by_play_div]);
-	main_div.append([createGameChooser(), gameinfo_div, inner_div]);
+	main_div.append([createGameChooser(), gameinfo_div, header_div, inner_div]);
 	$('body').append([main_div]);
 	svg = d3.select(".top")
 		.append("svg")
@@ -443,7 +445,6 @@ function draw(moment) {
 }
 
 function main(){
-	set_canvas_size();
 	loadUIElements();
 	$.getJSON(getPlayByPlayPath(game_index), function(json) {
 		play_by_play_index = 0;
