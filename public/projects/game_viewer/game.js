@@ -30,9 +30,9 @@ let is_animating = true;
 // Data
 const data_path = 'https://raw.githubusercontent.com/blin17/nba_data/master/';
 const data_path2 = 'http://brianlin.net/json_data/nba'
-const game_names = ['11.18.2015.POR.at.HOU','12.31.2015.GSW.at.HOU', '01.15.2016.CLE.at.HOU'
-					,'11.19.2015.GSW.at.LAC','12.25.2015.SAS.at.HOU','12.31.2015.GSW.at.HOU'
-					, '01.04.2016.BOS.at.BKN']
+const game_names = ['11.18.2015.POR.at.HOU','11.19.2015.GSW.at.LAC','12.21.2015.CHA.at.HOU'
+					,'12.25.2015.SAS.at.HOU','12.31.2015.GSW.at.HOU'
+					, '01.04.2016.BOS.at.BKN', '01.15.2016.CLE.at.HOU']
 const getDataPath = function (game_id, frame_num) {
   return `${data_path}/${game_names[game_id]}/frame${frame_num}-${game_names[game_id]}.json`;
 }
@@ -57,7 +57,7 @@ let play_by_play_index = 0;
 let last_score = '0 - 0';
 
 // d3
-const xScale = d3.scaleLinear().domain([0,100]).range([0, width*1.15]);
+const xScale = d3.scaleLinear().domain([0,100]).range([0, width*1.075]);
 const yScale = d3.scaleLinear().domain([0, 50]).range([0,height]);
 const xMap = function(datum) {return xScale(datum.x)};
 const xMapText = function(datum) {return xScale(datum.x) + 10};
@@ -323,9 +323,10 @@ function createGameChooser() {
 				index_event = 0;
 				index_moment = 0;
 				play_by_play_index = 0;
-				play_by_play = json
-				next_quarter = play_by_play['PERIOD'][play_by_play_index]
-				next_game_clock = play_by_play['GAMECLOCK'][play_by_play_index]
+				play_by_play_ul.children().empty();
+				play_by_play = json;
+				next_quarter = play_by_play['PERIOD'][play_by_play_index];
+				next_game_clock = play_by_play['GAMECLOCK'][play_by_play_index];
 				loadGame(getDataPath(game_index, frame_index));
 			});
 		});
@@ -339,7 +340,6 @@ function createGameChooser() {
 function loadUIElements() {
 	main_div = $('<div>').attr('id', 'main'+game_index).attr('class', 'main');
 	inner_div = $('<div>').attr('class', 'inner');
-	
 	gameinfo_div = $('<div>').attr('class','gameinfo');
 	top_div = $('<div>').attr('class', 'top');
 	bottom_div = $('<div>').attr('class', 'bottom');
