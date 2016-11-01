@@ -6,6 +6,8 @@ There's a lot of types of blogs out there- wordpress/tumblr/jekyll/hexo, but min
 
 One thing that I wanted to do is automatically deploy to my server without copying over all of my files. The way my setup works is I run Git and push it directly to my server. Using a [post-receive git hook](https://git-scm.com/book/en/v2/Customizing-Git-Git-Hooks), it automatically runs the following script when the server receives the push [[1]](#1):
 
+The way I have my directory set up is having my bare git file apart from the actual git contents. Then when I pull the hooks I go into the contents directory and run the command.
+
 ```
 T_REPO=$HOME/homepage.git
 GIT_REPO=$HOME/homepage/
@@ -66,7 +68,7 @@ unset GIT_DIR
 git pull
 sudo pkill -f "node app.js"
 npm install
-sudo nohup node app.js &
+nohup sudo node app.js &
 exit
 ```
 
