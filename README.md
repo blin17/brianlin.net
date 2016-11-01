@@ -36,3 +36,4 @@ npm install
 sudo nohup node app.js &
 exit
 ```
+
